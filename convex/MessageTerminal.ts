@@ -19,9 +19,9 @@ export const send = mutation({
 export const list = query({
   args: {},
   handler: async (ctx) => {
-    const message = await ctx.db.query("messages_data").order("desc").take(10);
+    const messages_data = await ctx.db.query("messages_data").order("desc").take(10);
 
-    return message.reverse();
+    return messages_data.reverse();
   },
 });
 

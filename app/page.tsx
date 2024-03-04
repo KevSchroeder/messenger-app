@@ -10,7 +10,7 @@ interface ChatAppProps {
     user: string;
 }
 
-const NAME = "Bob";
+const NAME = "Bob"
 
 const ChatApp = ({ user }: ChatAppProps) => {
 
@@ -34,26 +34,17 @@ const ChatApp = ({ user }: ChatAppProps) => {
         <main className="container mx-auto px-4 py-8">
             <h1 className="text-3xl font-bold mb-4">Convex Chat</h1>
             <p className="badge">
-                <span>{NAME}</span>
+                <strong>{NAME}</strong>
             </p>
             <ul className="space-y-4">
                 {messages?.map((messages) => (
-                    <article
-                    key={messages._id}
-                    className={messages.user === NAME ? "message-mine" : ""}
-                    >
-                        <div>{messages.user}</div>
-
-                        <p>{messages.body}</p>
-                    </article>
-                ))}
-                {/* {messages && messages.map((message: any) => (
-                    <li key={message._id} className="flex items-center space-x-2">
-                        <span className="font-bold">{message.user}:</span>
-                        <span>{message.body}</span>
-                        <span className="text-gray-500 text-sm">{new Date(message._creationTime).toLocaleTimeString()}</span>
+                    <li key={messages._id}
+                    className={messages.user === NAME ? "message-mine" : ""}>
+                        <div>{messages.user}</div>                        
+                        <div>{messages.body}</div>
+                        <div>{new Date(messages._creationTime).toLocaleTimeString()}</div>
                     </li>
-                ))}  */}
+                ))}
             </ul>
             <form className="mt-8" onSubmit={handleSendMessage}>
                 <input

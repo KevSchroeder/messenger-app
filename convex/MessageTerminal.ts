@@ -2,7 +2,7 @@ import { mutation, query } from "./_generated/server";
 import { v } from "convex/values";
 
 
-// Return the last 10 tasks in a given task list.
+
 export const Messages = query(async ({ db }) => {
   return await db.query("messages_data").collect();
 })
@@ -15,6 +15,7 @@ export const send = mutation({
   },
 });
 
+// Return the last 10 tasks in a given task list.
 export const list = query({
   args: {},
   handler: async (ctx) => {

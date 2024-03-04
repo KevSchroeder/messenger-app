@@ -1,10 +1,12 @@
+import ChatApp from "./page";
 
-const Alice = () => {
+const AlicePage = () => {
     return (
         <div>
-            <h1>Alice</h1>
+            <h1>Welcome to Alice's Page</h1>
+            <ChatApp user="alice" />
         </div>
     );
 };
 
-export default Alice;
+export default AlicePage;

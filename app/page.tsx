@@ -1,7 +1,7 @@
 "use client";
 import { useQuery, useMutation } from "convex/react";
 import { api } from "../convex/_generated/api";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import BobPage from "./bob";
 import AlicePage from "./alice";
 
@@ -18,13 +18,17 @@ const ChatApp = ({ user }: ChatAppProps) => {
     const sendMessage = useMutation(api.MessageTerminal.send); // Using the send mutation
     const messages = useQuery(api.MessageTerminal.Messages) || [];
 
-    
-
-        async function handleSendMessage(event: FormEvent) {
+            async function handleSendMessage(event: FormEvent) {
         event.preventDefault();
          await sendMessage({ body: text, user: NAME }); // Sending user along with the message
         setText('');
     }
+
+    useEffect(() => {
+        setTimeout(() => {
+            window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth"});
+        }, 0);
+    }, [messages]);
 
     return (
         <main className="container mx-auto px-4 py-8">

@@ -13,4 +13,14 @@ export const send = mutation({
     const message = { body, user };
     await ctx.db.insert("messages_data", message); //inserting message to db
   },
-})
+});
+
+export const list = query({
+  args: {},
+  handler: async (ctx) => {
+    const message = await ctx.db.query("messages_data").order("desc").take(10);
+
+    return message.reverse();
+  },
+});
+

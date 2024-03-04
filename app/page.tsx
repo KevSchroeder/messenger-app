@@ -18,7 +18,7 @@ const ChatApp = ({ user }: ChatAppProps) => {
     const sendMessage = useMutation(api.MessageTerminal.send); // Using the send mutation
     const messages = useQuery(api.MessageTerminal.Messages) || [];
 
-            async function handleSendMessage(event: FormEvent) {
+        async function handleSendMessage(event: FormEvent) {
         event.preventDefault();
          await sendMessage({ body: text, user: NAME }); // Sending user along with the message
         setText('');
@@ -32,35 +32,35 @@ const ChatApp = ({ user }: ChatAppProps) => {
 
     return (
         <main className="container mx-auto px-4 py-8">
-            <h1 className="text-3xl font-bold mb-4">Convex Chat</h1>
-            <p className="badge">
-                <strong>{NAME}</strong>
-            </p>
-            <ul className="space-y-4">
-                {messages?.map((messages) => (
-                    <li key={messages._id}
-                    className={messages.user === NAME ? "message-mine" : ""}>
-                        <div>{messages.user}</div>                        
-                        <div>{messages.body}</div>
-                        <div>{new Date(messages._creationTime).toLocaleTimeString()}</div>
-                    </li>
-                ))}
-            </ul>
-            <form className="mt-8" onSubmit={handleSendMessage}>
-                <input
-                    className="border border-gray-300 rounded-md px-4 py-2 mr-2 w-3/4"
-                    value={text}
-                    onChange={(event) => setText(event.target.value)}
-                    placeholder="Write a message…"
-                />
-                <input
-                    type="submit"
-                    value="Send"
-                    className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-md cursor-pointer disabled:opacity-50"
-                    disabled={!text}
-                />
-            </form>
-        </main>
+    <h1 className="text-3xl font-bold mb-4 text-center text-blue-600">Convex Chat</h1>
+    <p className="text-center text-gray-700 mb-4">You are chatting as <strong className="text-blue-700">{NAME}</strong></p>
+    <ul className="space-y-4">
+        {messages?.map((message) => (
+            <li key={message._id} className={`flex items-center space-x-2 ${message.user === NAME ? "bg-sky-500 rounded-lg p-4" : "bg-gray-100 rounded-lg p-4"}`}>
+                <div className="font-semibold text-gray-800">{message.user}</div>                        
+                <div className="text-gray-900">{message.body}</div>
+                <div className="text-sm text-gray-600">{new Date(message._creationTime).toLocaleTimeString()}</div>
+            </li>
+        ))}
+    </ul>
+    <form className="mt-8 flex items-center" onSubmit={handleSendMessage}>
+        <input
+            className="border border-gray-300 rounded-md px-4 py-2 mr-2 w-3/4 focus:outline-none focus:ring focus:border-blue-500"
+            value={text}
+            onChange={(event) => setText(event.target.value)}
+            placeholder="Write a message…"
+        />
+        <button
+            type="submit"
+            className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-md cursor-pointer disabled:opacity-50 focus:outline-none focus:ring focus:border-blue-500"
+            disabled={!text}
+        >
+            Send
+        </button>
+    </form>
+</main>
+
+
     );
 };
 

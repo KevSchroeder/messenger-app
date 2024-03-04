@@ -1,4 +1,4 @@
-import ChatApp from "./page";
+import ChatApp from "../App";
 
 const AlicePage = () => {
     return (

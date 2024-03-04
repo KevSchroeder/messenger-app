@@ -2,28 +2,28 @@
 import { useQuery, useMutation } from "convex/react";
 import { api } from "../convex/_generated/api";
 import { FormEvent, useEffect, useState } from "react";
-import BobPage from "./bob";
-import AlicePage from "./alice";
 
 
 interface ChatAppProps {
     user: string;
 }
 
-const NAME = "Bob"
+//const NAME = "Bob"
 // const [name] = useState(() => 'User' + Math.floor.(Math.random() * 1000));
 
-const ChatApp = ({ user }: ChatAppProps) => {
-
+const ChatApp = ( { user }: ChatAppProps ) => {
+    
     const [text, setText] = useState<string>('');
     const sendMessage = useMutation(api.MessageTerminal.send); // Using the send mutation
     const messages = useQuery(api.MessageTerminal.Messages) || [];
 
-        async function handleSendMessage(event: FormEvent) {
+    async function handleSendMessage(event: FormEvent) {
+        
         event.preventDefault();
-         await sendMessage({ body: text, user: NAME }); // Sending user along with the message
+         await sendMessage({ body: text, user: user }); // Sending user along with the message
         setText('');
     }
+
 
     useEffect(() => {
         setTimeout(() => {
@@ -33,11 +33,11 @@ const ChatApp = ({ user }: ChatAppProps) => {
 
     return (
         <main className="container mx-auto px-4 py-8">
-    <h1 className="text-3xl font-bold mb-4 text-center text-blue-600">Convex Chat</h1>
-    <p className="text-center text-gray-700 mb-4">You are chatting as <strong className="text-blue-700">{NAME}</strong></p>
+    <h1 className="text-3xl font-bold mb-4 text-center text-blue-600">Edgevanta Chat App</h1>
+    <p className="text-center text-gray-700 mb-4">You are chatting as <strong className="text-blue-700">{user}</strong></p>
     <ul className="space-y-4">
         {messages?.map((message) => (
-            <li key={message._id} className={`flex items-center space-x-2 ${message.user === NAME ? "bg-sky-500 rounded-lg p-4" : "bg-gray-100 rounded-lg p-4"}`}>
+            <li key={message._id} className={`flex items-center space-x-2 ${message.user === user ? "bg-sky-500 rounded-lg p-4" : "bg-gray-100 rounded-lg p-4"}`}>
                 <div className="font-semibold text-gray-800">{message.user}</div>                        
                 <div className="text-gray-900">{message.body}</div>
                 <div className="text-sm text-gray-600">{new Date(message._creationTime).toLocaleTimeString()}</div>

@@ -8,9 +8,6 @@ interface ChatAppProps {
     user: string;
 }
 
-//const NAME = "Bob"
-// const [name] = useState(() => 'User' + Math.floor.(Math.random() * 1000));
-
 const ChatApp = ( { user }: ChatAppProps ) => {
     
     const [text, setText] = useState<string>('');

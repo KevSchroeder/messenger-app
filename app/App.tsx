@@ -29,9 +29,9 @@ const ChatApp = ( { user }: ChatAppProps ) => {
     }, [messages]);
 
     return (
-        <main className="container mx-auto px-4 py-8">
-    <h1 className="text-3xl font-bold mb-4 text-center text-blue-600">Edgevanta Chat App</h1>
-    <p className="text-center text-gray-700 mb-4">You are chatting as <strong className="text-blue-700">{user}</strong></p>
+        <main className="container mx-auto px-4 py-12 bg-gray-500">
+    <h1 className="text-3xl font-bold mb-4 text-center text-sky-300"> Chat App</h1>
+    <p className="text-center text-white-700 mb-4">You are chatting as <strong className="text-sky-300">{user}</strong></p>
     <ul className="space-y-4">
         {messages?.map((message) => (
             <li key={message._id} className={`flex items-center space-x-2 ${message.user === user ? "bg-sky-500 rounded-lg p-4" : "bg-gray-100 rounded-lg p-4"}`}>

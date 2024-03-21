@@ -2,7 +2,7 @@ import ChatApp from "../App";
 
 const BobPage = () => {
     return (
-        <div>
+        <div className="bg-white">
             <h1>Welcome to Bob's Page</h1>
             <ChatApp user="Bob" />
         </div>

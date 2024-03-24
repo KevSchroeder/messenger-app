@@ -29,21 +29,23 @@ const ChatApp = ( { user }: ChatAppProps ) => {
     }, [messages]);
 
     return (
-        <main className="container mx-auto px-4 py-12 bg-white">
+        <main className="container mx-auto my-auto px-4 mb-12 bg-white">
     <h1 className="text-3xl font-bold mb-4 text-center text-cyan-800"> Chat App</h1>
     <p className="text-center text-white-700 mb-4">You are chatting as <strong className="text-cyan-800">{user}</strong></p>
     <ul className="space-y-4">
         {messages?.map((message) => (
-            <li key={message._id} className={`flex items-center space-x-2 ${message.user === user ? "flex-row-reverse space-x-reverse bg-sky-500 rounded-lg p-4" : "bg-gray-300 rounded-lg p-4"}`}>
-                <div className="font-semibold text-gray-800">{message.user}</div>                        
-                <div className="text-gray-900">{message.body}</div>
-                <div className="text-sm text-gray-600">{new Date(message._creationTime).toLocaleTimeString()}</div>
+            <li key={message._id} className={`flex ${message.user === user ? "flex-row-reverse" : ""}`}>
+                <div className={`bg-sky-500 rounded-lg p-4 text-black ${message.user !== user ? "bg-red-300 text-gray-900" : ""}`}>
+                    <div className="font-semibold">{message.user}</div>                        
+                    <div className="text-sm">{message.body}</div>
+                    <div className="text-xs text-gray-600">{new Date(message._creationTime).toLocaleTimeString()}</div>
+                </div>
             </li>
         ))}
     </ul>
-    <form className="mt-8 flex items-center" onSubmit={handleSendMessage}>
+    <form className="py-12 flex items-center" onSubmit={handleSendMessage}>
         <input
-            className="border border-gray-300 rounded-md px-4 py-2 mr-2 w-3/4 focus:outline-none focus:ring focus:border-blue-500"
+            className="border border-gray-500 rounded-md px-4 py-2 mr-2 w-3/4 focus:outline-none focus:ring focus:border-blue-500"
             value={text}
             onChange={(event) => setText(event.target.value)}
             placeholder="Write a message…"
@@ -57,8 +59,6 @@ const ChatApp = ( { user }: ChatAppProps ) => {
         </button>
     </form>
 </main>
-
-
     );
 };
 

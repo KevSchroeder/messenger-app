@@ -3,7 +3,7 @@ import Link from 'next/link';
 export default function Home() {
     return (
         <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100">
-            <h1 className="text-4xl font-bold mb-8 text-center text-gray-800">Welcome to Chat</h1>
+            <h1 className="text-4xl font-bold mb-8 text-center text-gray-800">Welcome to the Chat</h1>
             <hr className="w-1/2 border-gray-400 mb-8" />
             <div className="flex flex-col items-center space-y-6">
                 <Link href="/alice">
